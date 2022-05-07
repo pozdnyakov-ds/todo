@@ -1,6 +1,6 @@
 <template>
     <div style="width: 100%; height: 50px; background-color: #eee; padding: 10px; text-align: left; display: flex">
-        <img alt="ToDo logo" src="../assets/logo.png" style="width: 50px; display: inline-block;">
+        <img alt="ToDo logo" src="../assets/logo.png" style="width: 50px; display: inline-block; margin: 0 20px 0 5px;">
         <div class="header">{{ title }}</div> 
         <div class="login">Логин</div>
     </div>

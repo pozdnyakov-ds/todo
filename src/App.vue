@@ -1,14 +1,18 @@
 <template>
   <TodoHeader title="Дела"></TodoHeader>
-  <div>
-    <div style="width: 25%; height: 100%; background-color: antiquewhite;"></div>
-    <div style="width: 75%; height: 100%; background-color: #fff;"></div>
+
+  <div style="width: 100%; text-align: justify; vertical-align: top;">
+    <TodoLeft :items="items"></TodoLeft>
+    <div style="margin: 5px; background-color: #fff; 
+      display: inline-block; padding: 10px; vertical-align: top;"
+    >Основной блок</div>
   </div>
   
 </template>
 
 <script>
 import TodoHeader from './components/TodoHeader.vue'
+import TodoLeft from './components/TodoLeft.vue'
 
 export default {
   data() {
@@ -37,7 +41,7 @@ export default {
     }
   },
   components: {
-    TodoHeader
+    TodoHeader, TodoLeft
   }
 }
 </script>
@@ -46,6 +50,7 @@ export default {
 body {
   margin: 0px;
   padding: 0px;
+  height: 100%;
 }
 
 #app {
