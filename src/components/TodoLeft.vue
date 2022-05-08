@@ -1,11 +1,13 @@
 <template>
     <div style="width: 25%; background-color: #fff; display: inline-block; 
         padding: 10px; border-right: 1px solid #ccc; height: 90vh;"
-    ><b>МЕНЮ</b>
+    >
+    <div><b>МЕНЮ</b></div>
     <TodoItem 
-        v-for="item in items"
-        :key="item"    
+        v-for="(item, index) in items"
+        :key="index"    
         :item="item"
+        @clickItem="clickItem"
     ></TodoItem>
     </div>
 </template>
@@ -16,7 +18,13 @@
         props: ['items'],
         data() {
             return {
-
+                selectedId: 'Не выбран'
+            }
+        },
+        methods: {
+            clickItem(id) {
+                //console.log('Letf ID', id)
+                this.$emit('clickItem', id)
             }
         },
         components: {
@@ -25,6 +33,6 @@
     }
 </script>
 
-<style lang="scss" scoped>
+<style>
 
 </style>
