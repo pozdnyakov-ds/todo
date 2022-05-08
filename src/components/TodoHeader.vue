@@ -20,14 +20,15 @@
     margin: auto;
     padding: 5px; 
     display: inline-block;
-    background-color: aquamarine;
+    background-color: transparent;
+    font-weight: bold;
 }
 .login {
-    width: 20%; 
-    margin-left: 10px; 
-    margin: auto; 
-    padding: 5px;
+    width: 10%; 
+    margin: auto;
+    padding: 10px;
     display: inline-block;
-    background-color: #ccc;
+    background-color: #fff;
+    border-radius: 5px;
 }
 </style>
