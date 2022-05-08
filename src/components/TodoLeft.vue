@@ -7,6 +7,7 @@
         v-for="(item, index) in items"
         :key="index"    
         :item="item"
+        :active="active"
         @clickItem="clickItem"
     ></TodoItem>
     </div>
@@ -15,15 +16,9 @@
 <script>
     import TodoItem from '../components/TodoItem.vue'
     export default {
-        props: ['items'],
-        data() {
-            return {
-                selectedId: 'Не выбран'
-            }
-        },
+        props: ['items', 'active'],
         methods: {
             clickItem(id) {
-                //console.log('Letf ID', id)
                 this.$emit('clickItem', id)
             }
         },
@@ -33,6 +28,6 @@
     }
 </script>
 
-<style>
+<style scoped>
 
 </style>

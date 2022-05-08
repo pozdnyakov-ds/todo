@@ -2,8 +2,8 @@
   <TodoHeader title="Дела"></TodoHeader>
 
   <div style="width: 100%; text-align: justify; vertical-align: top;">
-    <TodoLeft :items="items" @clickItem="clickItem"></TodoLeft>
-    <TodoMain :id="selectedId" :items="items"></TodoMain>
+    <TodoLeft :items="items" :active="active" @clickItem="clickItem"></TodoLeft>
+    <TodoMain :items="items" :active="active"></TodoMain>
   </div>
   
 </template>
@@ -17,7 +17,7 @@ export default {
   data() {
     return {
       name: 'App',
-      selectedId: null,
+      active: 0,
       items: [
         {
           id: 0,
@@ -42,8 +42,7 @@ export default {
   },
   methods: {
     clickItem(id) {
-      console.log('Global ID', id)
-      this.selectedId = id
+      this.active = id
     }
   },
   components: {

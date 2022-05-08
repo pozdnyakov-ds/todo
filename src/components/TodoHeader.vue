@@ -13,7 +13,7 @@
     }
 </script>
 
-<style>
+<style scoped>
 .header {
     width: 80%; 
     margin-left: 10px; 
