@@ -1,6 +1,6 @@
 <template>
   <TodoHeader title="Дела"></TodoHeader>
-  <TodoForms></TodoForms>
+  <TodoForms @loadArticles="loadArticles"></TodoForms>
   <div style="width: 100%; text-align: justify; vertical-align: top;">
     <TodoLeft :items="items" :active="active" @clickItem="clickItem"></TodoLeft>
     <TodoMain :items="items" :active="active"></TodoMain>
@@ -13,37 +13,34 @@ import TodoHeader from './components/TodoHeader.vue'
 import TodoLeft from './components/TodoLeft.vue'
 import TodoMain from './components/TodoMain.vue'
 import TodoForms from './components/TodoForms.vue'
+import axios from 'axios'
 
 export default {
   data() {
     return {
       name: 'App',
       active: 0,
-      items: [
-        {
-          id: 0,
-          title: 'Заголовок 1',
-          text: 'Текст 1...',
-          state: 0
-        },
-        {
-          id: 1,
-          title: 'Заголовок 2',
-          text: 'Текст 2...',
-          state: 0
-        },
-        {
-          id: 2,
-          title: 'Заголовок 3',
-          text: 'Текст 3...',
-          state: 0
-        },
-      ]
+      items: [],
     }
   },
   methods: {
     clickItem(id) {
       this.active = id
+    },
+    loadArticles() {
+      axios.get('https://todo-77cd5-default-rtdb.europe-west1.firebasedatabase.app/articles.json')
+        .then(response => {
+          this.items = Object.keys(response.data).map(key => {
+            return {
+              id: key,
+              title: response.data[key].title,
+              textBody: response.data[key].textBody,
+              status: response.data[key].status
+            }
+          })
+          console.log('ITEMS: ', this.items)
+          //this.items = response.data 
+        })
     }
   },
   components: {
@@ -51,7 +48,10 @@ export default {
     TodoLeft,
     TodoMain,
     TodoForms,
-}
+  },
+  mounted: function() {
+    this.loadArticles()
+  }
 }
 </script>
 
