@@ -2,7 +2,12 @@
   <TodoHeader title="Дела"></TodoHeader>
   <TodoForms @loadArticles="loadArticles"></TodoForms>
   <div style="width: 100%; text-align: justify; vertical-align: top;">
-    <TodoLeft :items="items" :active="active" @clickItem="clickItem"></TodoLeft>
+    <TodoLeft 
+      :items="items" 
+      :active="active" 
+      @clickItem="clickItem"
+      @deleteItem="deleteItem"
+      ></TodoLeft>
     <TodoMain :items="items" :active="active"></TodoMain>
   </div>
   
@@ -27,10 +32,10 @@ export default {
     clickItem(id) {
       this.active = id
     },
-    loadArticles() {
+    async loadArticles() {
       axios.get('https://todo-77cd5-default-rtdb.europe-west1.firebasedatabase.app/articles.json')
         .then(response => {
-          this.items = Object.keys(response.data).map(key => {
+          this.items = (response.data == null) ? [] : Object.keys(response.data).map(key => {
             return {
               id: key,
               title: response.data[key].title,
@@ -41,7 +46,13 @@ export default {
           console.log('ITEMS: ', this.items)
           //this.items = response.data 
         })
-    }
+    },
+    async deleteItem(id) {
+      console.log('Delete: ', id)
+      await axios.delete('https://todo-77cd5-default-rtdb.europe-west1.firebasedatabase.app/articles/' + id + '.json')
+      //this.loadArticles()
+      this.items = this.items.filter(item => item.id !== id)
+    },
   },
   components: {
     TodoHeader,
