@@ -1,5 +1,9 @@
 <template>
-    <div v-if="items[active]" class="item">{{ items[active] }}</div>
+    <div v-if="active !== 0" class="item">
+        <div v-for="(item, index) in items" :key="index">
+            {{(item.id == active) ? item : null}}
+        </div>
+    </div>
     <div v-else class="item">Выбрать элемент</div>
 </template>
 
