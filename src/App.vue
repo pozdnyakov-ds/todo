@@ -1,6 +1,6 @@
 <template>
   <TodoHeader title="Дела"></TodoHeader>
-
+  <TodoForms></TodoForms>
   <div style="width: 100%; text-align: justify; vertical-align: top;">
     <TodoLeft :items="items" :active="active" @clickItem="clickItem"></TodoLeft>
     <TodoMain :items="items" :active="active"></TodoMain>
@@ -12,6 +12,7 @@
 import TodoHeader from './components/TodoHeader.vue'
 import TodoLeft from './components/TodoLeft.vue'
 import TodoMain from './components/TodoMain.vue'
+import TodoForms from './components/TodoForms.vue'
 
 export default {
   data() {
@@ -49,6 +50,7 @@ export default {
     TodoHeader,
     TodoLeft,
     TodoMain,
+    TodoForms,
 }
 }
 </script>
